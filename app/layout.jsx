@@ -3,7 +3,7 @@ import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
 export const metadata = {
-  title: "Proptopia",
+  title: "Promtopia",
   RTCSessionDescription: "Find Your Prompts"
 }
 
@@ -14,11 +14,11 @@ const RootLayout = ({ children }) => (
       <div className="main">
         <div className="gradient"></div>
       </div>
-      <main className="app">
-        <Nav></Nav>
-        {children}
+        <main className="app">
+          <Nav/>
+          {children}
         </main>
-        </Provider>
+      </Provider>
     </body>
   </html>
 );
