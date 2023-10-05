@@ -6,9 +6,9 @@ import { connectToDB } from "@utils/database"
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    })
   ],
   secret: process.env.NEXTAUTH_SECRET,
   async session({ session }) {
@@ -31,18 +31,22 @@ const handler = NextAuth({
       // if not create a user
 
       if (!userExists) {
-        await User.createOne({
+        await User.create({
           email: profile.email,
           username: profile.username.replace(" ", "").toLowerCase(),
           image:profile.picture,
         })
       }
+
       return true;
     } catch (error) {
       console.log(error);
       return false;
 
     }
+  },
+  pages: {
+    error: "/",
   },
 });
 
